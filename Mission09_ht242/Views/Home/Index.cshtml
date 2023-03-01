@@ -1,0 +1,33 @@
+﻿@{
+}
+
+@model BooksViewModel
+
+<br /><br />
+<H1>Welcome to the Bookstore!</H1>
+<br /><br />
+
+@*Lists out the books in the database*@
+@foreach (Book b in Model.Books)
+{
+    <div class="card card-outline-primary m-1 p-1">
+        <div class="bg-faded p-1">
+            <h4>@b.Title <span class="badge badge-pill badge-primary bg-danger" style="float:right">
+                <small>@b.Price.ToString("c")</small></span>
+            </h4>
+            <ul  class="list-unstyled">
+                <li>Author: @b.Author</li>
+                <li>Publisher: @b.Publisher</li>
+                <li>ISBN: @b.Isbn</li>
+                <li>Classification: @b.Classification</li>
+                <li>Number of Pages: @b.PageCount</li>
+            </ul>
+           
+        </div>
+    </div>
+}
+
+@*Dynamic pagination links*@
+<div page-model page-blah="@Model.PageInfo" page-action="Index" page-classes-enabled="true" 
+     page-class="btn" page-class-normal="btn-outline-dark"
+     page-class-selected="btn-danger" class="btn-group pull-right m-1"></div>
