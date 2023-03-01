@@ -10,6 +10,7 @@
 @*Lists out the books in the database*@
 @foreach (Book b in Model.Books)
 {
+@*Divs are just for styling*@
     <div class="card card-outline-primary m-1 p-1">
         <div class="bg-faded p-1">
             <h4>@b.Title <span class="badge badge-pill badge-primary bg-danger" style="float:right">
