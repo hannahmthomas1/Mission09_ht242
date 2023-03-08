@@ -1,0 +1,39 @@
+﻿
+@{
+}
+
+@model Book
+
+
+@*Divs are just for styling*@
+<div class="card card-outline-primary m-1 p-1">
+    <div class="p-1">
+        <h4 class="bg-light p-1">
+            @Model.Title <span class="badge bg-dark" style="float:right">
+                <small>@Model.Price.ToString("c")</small>
+            </span>
+        </h4>
+        <ul class="list-unstyled">
+            <li>Author: @Model.Author</li>
+            <li>Publisher: @Model.Publisher</li>
+            <li>ISBN: @Model.Isbn</li>
+            <li>Classification: @Model.Classification</li>
+            <li>Number of Pages: @Model.PageCount</li>
+        </ul>
+
+    </div>
+
+@*This form sends the bookid and current url when the user click the "Add to Cart" button*@
+    <form method="post" asp-page="/Checkout">
+
+        <input type="hidden" asp-for="@Model.BookId" />
+
+        <input type="hidden" name="returnURL" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+
+        <span class="card-text">
+            <button type="submit" class="btn btn-outline-danger float-end">Add to Cart</button>
+        </span>
+
+    </form>
+</div>
+

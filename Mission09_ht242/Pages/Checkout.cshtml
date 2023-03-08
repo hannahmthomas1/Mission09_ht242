@@ -1,0 +1,46 @@
+﻿@page
+@model Mission09_ht242.Pages.CheckoutModel
+@{
+}
+<br /><br />
+<h1 class="">Your Cart</h1>
+<br />
+
+@*Checkout table*@
+<table class="table table-bordered table-striped shadow-lg">
+    <thead>
+        <tr>
+            <th>Book</th>
+            <th>Quantity</th>
+            <th>Cost</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+
+@*Entries are dynamically added here*@
+    <tbody>
+        @foreach (var i in Model.cart.Items)
+        {
+        <tr>
+            <td>@i.Book.Title</td>
+            <td>@i.Quantity</td>
+            <td>@i.Book.Price</td>
+            <td>@(i.Quantity * i.Book.Price)</td>
+        </tr>
+        }
+    </tbody>
+
+@*Calculates subtotal*@
+    <tfoot>
+        <tr>
+            <td colspan="3">Total:</td>
+            <td>@Model.cart.CalculateTotal().ToString("c")</td>
+        </tr>
+    </tfoot>
+</table>
+<br />
+
+@*Url will bring you back to where you just were*@
+<div>
+    <a class="btn btn-danger" href="@Model.ReturnUrl">Continue Shopping</a>
+</div>

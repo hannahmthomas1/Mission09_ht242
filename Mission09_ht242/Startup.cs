@@ -35,6 +35,13 @@ namespace Mission09_ht242
             });
 
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
+
+            //Needed to use razor pages
+            services.AddRazorPages();
+
+            //Keeps session info so a person can add multiple items to their cart
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,13 +52,34 @@ namespace Mission09_ht242
                 app.UseDeveloperExceptionPage();
             }
 
+            //Corresponds to the wwwroot
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "categorypage",
+                    pattern: "{bookType}/Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "Index" }
+                    );
+
+                endpoints.MapControllerRoute(
+                    name: "Paging",
+                    pattern : "Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "Index", pageNum = 1}
+                    );
+                
+                endpoints.MapControllerRoute(
+                    name: "category",
+                    pattern: "{bookType}",
+                    defaults: new { Controller = "Home", action = "Index", pageNum = 1 }
+                    );
+
                 endpoints.MapDefaultControllerRoute();
+
+                endpoints.MapRazorPages();
             });
         }
     }

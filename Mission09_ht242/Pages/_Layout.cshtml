@@ -7,24 +7,18 @@
     <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-@*Top banner*@
     <div class="bg-dark text-white p-2">
         <span class="navbar-brand ml-2">BOOKSTORE</span>
     </div>
+    
+    <div class="m-1 p-1 row">
+        <div class="col-3">
 
-@*This is where the body renders*@
-    <div class="row m-2 p-2">
-
-@*Uses grid to space out cards*@
-        <div id="categories" class="col-2">
-            <vc:types></vc:types>
         </div>
 
-        <div class="col-7">
+        <div class="col-6">
             @RenderBody()
         </div>
-
     </div>
-
 </body>
 </html>
