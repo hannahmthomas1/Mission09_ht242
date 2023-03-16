@@ -1,0 +1,52 @@
+﻿@{
+}
+
+@model Purchase
+
+
+
+<h1>Check out below</h1> 
+<p>Please enter your details below.</p>
+
+
+@*Form for user to fill our when they checkout*@
+<form method="post" asp-controller="Purchase" asp-action="CompleteCheckout">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    
+    <h3>Ship to</h3>
+
+    <div class="form-group">
+        <label asp-for="Name">Name:</label> <input asp-for="Name" name="Name" class="form-control" />
+    </div>
+
+    <h3>Address</h3>
+    <div class="form-group">
+        <label asp-for="AddressLine1">Address Line 1:</label>
+        <input asp-for="AddressLine1" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="AddressLine2">Address Line 2:</label>
+        <input asp-for="AddressLine2" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="City">City:</label>
+        <input asp-for="City" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="State">State:</label>
+        <input asp-for="State" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Zip">Zip Code:</label>
+        <input asp-for="Zip" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Country">Country:</label>
+        <input asp-for="Country" class="form-control" />
+    </div>
+
+@*Button*@
+    <div class="float-end">
+        <input class="btn btn-danger" type="submit" value="Complete Purchase"/>
+    </div>
+</form>

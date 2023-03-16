@@ -35,6 +35,7 @@ namespace Mission09_ht242
             });
 
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
+            services.AddScoped<IPurchaseRepository, EFPurchaseRepository>();
 
             //Needed to use razor pages
             services.AddRazorPages();
@@ -42,6 +43,9 @@ namespace Mission09_ht242
             //Keeps session info so a person can add multiple items to their cart
             services.AddDistributedMemoryCache();
             services.AddSession();
+
+            services.AddScoped<Cart>(x => SessionCart.GetCart(x));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
